@@ -1,0 +1,23 @@
+services:
+  nuxt:
+    build: .
+    workdir:
+    labels:
+      - 'traefik.enable=true'
+      # Here we have to define the URL
+      # More details https://doc.traefik.io/traefik/v2.0/routing/routers/#rule
+      - 'traefik.http.routers.${SERVICE}.rule=HostRegexp(`${WEB_DOMAIN}`)'
+      - 'traefik.docker.network=web'
+      - 'traefik.http.services.${SERVICE}.loadbalancer.server.port=3000'
+      # Activation of TLS
+      - "traefik.http.routers.${SERVICE}.tls=true"
+    volumes:
+      - .:/app  # Monta il codice sorgente in modo che possano essere applicate modifiche in tempo reale
+    environment:
+      - NODE_ENV=development  # Imposta l'ambiente di sviluppo per Nuxt
+    networks:
+      - web
+
+networks:
+  web:
+    external: true

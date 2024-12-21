@@ -1,0 +1,22 @@
+services:
+    laravel.test:
+        hostname: ${WEB_DOMAIN}
+
+        labels:
+            - 'traefik.enable=true'
+            # Here we have to define the URL
+            # More details https://doc.traefik.io/traefik/v2.0/routing/routers/#rule
+            - 'traefik.http.routers.${SERVICE}.rule=HostRegexp(`${WEB_DOMAIN}`)'
+            - 'traefik.docker.network=web'
+            - 'traefik.http.services.${SERVICE}.loadbalancer.server.port=80'
+            # Activation of TLS
+            - "traefik.http.routers.${SERVICE}.tls=true"
+        networks:
+            - sail
+            - web
+
+networks:
+    sail:
+        driver: bridge
+    web:
+        external: true
