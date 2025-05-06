@@ -9,9 +9,12 @@ PER LA GENERAZIONE DEI CERTIFICATI ABBIAMO BISOGNO DI 'mkcert'
 
 > _Per installare BREW:_
 >
-> 1. Installare requisiti: `sudo apt-get install build-essential procps curl file git`
-> 2. Per installare BREW: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
-> 3. Aggiungere brew a .bashrc: `echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/${utente}/.bashrc`
+> 1. Installare requisiti:
+>    `sudo apt-get install build-essential procps curl file git`
+> 2. Per installare BREW:
+>    `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+> 3. Aggiungere brew a .bashrc:
+>    `echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/${utente}/.bashrc`
 
 Installa il CA `mkcert -install`
 
@@ -29,4 +32,4 @@ Per ogni sito che vuoi accedere tramite ssl puoi aggiungere ssl in nginx tramite
 
 Poi li puoi legare ai siti.
 
-Per le applicazioni che utilizzano npm bisogna eseguire con `npm run dev -H 0.0.0.0`
+Per le applicazioni che utilizzano npm bisogna eseguire con `npm run dev -H 0.0.0.0` altrimenti non è visibile tramite Nginx Proxy Manager su docker
